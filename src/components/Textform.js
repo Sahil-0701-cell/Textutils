@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-export default function Textform(props) {
+export default function Textform(props,setCopied) {
     const handleUpClick=()=>{
         //console.log("Uppercase was clicked" + text)
         let newText=text.toLocaleUpperCase();
@@ -42,8 +42,14 @@ export default function Textform(props) {
     const handleCopy = () => {
       navigator.clipboard.writeText(text);
       props.showAlert("Text Copied! ","success");
-
     }
+    const handleCopyClick = () => {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => setCopied(true))
+        .catch((err) => console.error("failed to copy the text: " + err));
+        props.showAlert("Text Copied to clipboard! ","success");
+    };
     const handleExtraSpaces=()=>{
       let newText=text.split(/[  ]+/);
       setText(newText.join(" "));
@@ -77,11 +83,13 @@ export default function Textform(props) {
   <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={handleInverseClick}>Inverse Text</button>
   <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={handleCapitalizeText}>Capitalize Text</button>
   <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={handleCopy}>Copy Text</button>
+  <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={handleCopyClick}>Copy to Clipboard</button>
   <button disabled={text.length===0} className="btn btn-primary mx-1 my-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
   </div>
     <div className="container my-3" style={{color:props.mode==='dark'?'white':'#041743'}}>
       <h2>Your text summary</h2>
       <p>{text===""? 0 : wordCount(text)} words and {text.length} characters</p>
+      <p>Line Count: {text.split('\n').length}</p>
       <p>{ text===""? 0 * 0.008 : wordCount(text) * 0.008} Minutes read</p>
       <h2>Preview</h2>
       <p>{text.length>0?text:"Nothing to preview!!!"}</p>
