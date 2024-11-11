@@ -13,6 +13,7 @@ export default function Aboutus(props) {
   return (
     <div className="container">
         <h1 className="my-3"  style={{color:props.mode==='dark'?'white':'#042743'}}>About Us</h1>
+        <p style={{color:props.mode==='dark'?'white':'#042743'}}>Text Analyzer Tool(T.A.T) is a ReactJs website built primarily to do various operations on regular typed text. You can safely use WordPad or NotePad for text drafting, and saving, but T.A.T offers much more than simple text drafting and formatting. TextUtils can convert your text to any case in just one simple click of a button. You can even remove whitespaces from your scripted documents, and wear up your earphones to listen to it, instead of straining your eyes! It does a detailed analyzing of your text, and provides an output of words, and characters, along with reading time as well. The best part of T.A.T is that it is an open source project, as a result, dozens of new features are in the upcoming, which definitely makes it a cut above the rest.</p>
       <div className="accordion" id="accordionExample" style={myStyle}>
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingOne">
